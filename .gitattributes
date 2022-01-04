@@ -1,2 +1,2 @@
-* linguist-vendored
-*.php linguist-vendored=false
+deploy.js -linguist-vendored
+*.php linguist-language=PHP
