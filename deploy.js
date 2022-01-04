@@ -33,7 +33,7 @@ async function buildConfig(target) {
       //   localRoot: path.resolve('./dist'),
       //   remoteRoot: '/httpdocs/template/',
       //   include: ['**/*', '.*'],
-      //   deleteRemote: true
+      //   deleteRemote: false
       // }
     }
     case 'localDeploy': {
@@ -47,7 +47,7 @@ async function buildConfig(target) {
         localRoot: path.resolve('./blog2'),
         remoteRoot: './blog2/',
         include: ['**/*', '.*'],
-        deleteRemote: true
+        deleteRemote: false
       }
     }
     default:
