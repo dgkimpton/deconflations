@@ -1,0 +1,19 @@
+{
+  "name": "deconflations",
+  "version": "1.0.0",
+  "description": "",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "deploy:local": "node ./deploy.js localDeploy"
+  },
+  "repository": {
+    "type": "git",
+    "url": "192.168.1.2:/mnt/router/repositories/deconflations.git"
+  },
+  "author": "Duncan Kimpton",
+  "license": "ISC",
+  "devDependencies": {
+    "ftp-deploy": "^2.3.8"
+  }
+}
