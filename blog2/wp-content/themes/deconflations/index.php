@@ -5,6 +5,7 @@ final class DGK
 	public $pageId;
 	public $top_level_pages;
 	public $is_current_tab;
+	public $missing_posts;
 
 	public function __set($name, $value)
 	{
@@ -19,6 +20,7 @@ final class DGK
 $dgk = new DGK();
 
 $dgk->pageId = get_the_ID();
+$dgk->missing_posts = !have_posts();
 
 $dgk->top_level_pages = get_pages([
 	'sort_column' => 'menu_order',
