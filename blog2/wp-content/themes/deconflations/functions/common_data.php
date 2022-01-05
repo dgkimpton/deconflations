@@ -117,7 +117,7 @@ final class DgkWrappedPage extends NonDynamicObject
 		$this->blog = new DgkWrappedBlog($this->pageId);
 		$this->missing_posts = !have_posts();
 		$this->url = make_page_permalink($this->pageId);
-		$this->isTabPage = is_page() && $post->post_parent;
+		$this->isTabPage = is_page() && !$post->post_parent;
 
 		if (is_404() || $this->missing_posts) {
 			$this->title = merge_title_elements(["Not Found", $this->blog->name]);
@@ -161,4 +161,3 @@ final class DgkWrappedPage extends NonDynamicObject
 }
 
 $dgk = new DgkWrappedPage();
-var_dump($dgk);
