@@ -1,47 +1,18 @@
-<?php
-global $dgk;
-
-function merge_title_elements($elements)
-{
-	return implode(" | ", $elements);
-}
-
-function build_the_title()
-{
-	global $dgk;
-	global $post;
-	$name = get_bloginfo('name');
-
-	if (is_404() || $dgk->missing_posts) {
-		return merge_title_elements(["Not Found", $name]);
-	}
-
-	if (is_archive()) {
-		return merge_title_elements([get_the_title(), "archived", $name]);
-	}
-	if (is_search()) {
-		return merge_title_elements(["search", $name]);
-	}
-	if (is_tag()) {
-		return merge_title_elements([get_the_tags()[0], $name]);
-	}
-	return merge_title_elements([$post->post_title, $name]);
-}
-?>
+<?php global $dgk; ?>
 <!DOCTYPE html>
-<html lang="<?= get_bloginfo('language'); ?>">
+<html lang="<?= $dgk->blog->language ?>">
 
 <head>
-	<meta charset="<?= get_bloginfo('charset'); ?>">
-	<title><?= build_the_title(); ?></title>
+	<meta charset="<?= $dgk->blog->charset ?>">
+	<title><?= $dgk->title ?></title>
 </head>
 
 <body>
 	<header class="branding">
 		<h1>
-			<a href="<?= home_url(); ?>"><?= get_bloginfo('name'); ?></a>
+			<a href="<?= $dgk->blog->url ?>"><?= $dgk->blog->name ?></a>
 		</h1>
-		<h2><?= get_bloginfo('description'); ?></h2>
+		<h2><?= $dgk->blog->tagline ?></h2>
 	</header>
 	<nav class="tabs">
 		<?php
@@ -49,13 +20,11 @@ function build_the_title()
 		echo implode(
 			'<span class="tab-separator" aria-hidden="true"> | </span>' . "\n\t\t",
 			array_map(
-				function ($tab) use (&$dgk) {
-					$link = dcon_make_relative(get_permalink($tab));
-					$text = $tab->post_title;
-					$classes = ($dgk->pageId == $tab->ID) ? 'tab current-tab' : 'tab';
-					return '<a href="' . $link . '" class="' . $classes . '">' . $text . '</a>';
+				function ($tab) {
+					$classes = $tab->isCurrent ? 'tab current-tab' : 'tab';
+					return '<a href="' . $tab->link . '" class="' . $classes . '">' . $tab->displayText . '</a>';
 				},
-				$dgk->top_level_pages
+				$dgk->blog->tabs
 			)
 		);
 		?>
