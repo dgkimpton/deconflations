@@ -37,20 +37,64 @@ function injectFont($fontName, $fontWeight, $fontStyle, $fontFileName)
 
 	<?php
 	# Get the darkmode set ASAP to minimise solid color flashes during page load 
+
+	/*
+	CSS Key
+
+	a ==> link
+	u ==> underline (text decoration)
+	h ==> hover
+	t ==> tab
+	f ==> foreground
+	b ==> background
+	c ==> current item
+	v ==> visited
+
+	*/
+
+	$colors = [];
+	$colors["body-b"] = ["#121212", "#FEFEFE"];
+	$colors["body-f"] = ["#BABABA", "#3B3B3B"];
+	$colors["font-weight"] = ["lighter", "normal"];
+	$colors["logo-f"] = ["white", "black"];
+	$colors["t-b"] = ["var(--body-b)", "var(--body-b)"];
+	$colors["t-f"] = ["#CACACA", "#202020"];
+	$colors["t-u"] = ["#faebd7", "#ffd298"];
+	$colors["t-bh"] = ["#faebd7", "#ffd298"];
+	$colors["t-fh"] = ["black", "black"];
+	$colors["t-cb"] = ["var(--body-b)", "var(--body-b)"];
+	$colors["t-cf"] = ["white", "black"];
+	$colors["l-f"] = ["#f7c684", "#ff9000"];
+	$colors["l-u"] = ["#f7c684", "#ff9000"];
+	$colors["l-fh"] = ["black", "black"];
+	$colors["l-bh"] = ["#f7c684", "#faebd7"];
+	$colors["l-fv"] = ["#faebd7", "#c46e00"];
+	$colors["l-uv"] = ["#faebd7", "#c46e00"];
+	#$colors[""] = ["", ""];
 	?>
 
 	<style>
 		@media (prefers-color-scheme: dark) {
 			:root {
 				background-color: #121212;
-				color: #CACACA;
+				color: #BABABA;
+				<?php
+				foreach ($colors as  $key => $color) {
+					echo "--" . $key . ":" . $color[0] . ";";
+				}
+				?>
 			}
 		}
 
 		@media (prefers-color-scheme: light) {
 			:root {
 				background-color: #FEFEFE;
-				color: grey;
+				color: #3B3B3B;
+				<?php
+				foreach ($colors as  $key => $color) {
+					echo "--" . $key . ":" . $color[1] . ";";
+				}
+				?>
 			}
 		}
 
@@ -68,10 +112,6 @@ function injectFont($fontName, $fontWeight, $fontStyle, $fontFileName)
 			background: url(<?= $dgk->make_image_uri('offsite.png') ?>) no-repeat right center;
 		}
 	</style>
-
-	<!-- <link rel="preconnect" href="<?= $gfontApiUri ?>" crossorigin>
-	<link rel="preconnect" href="<?= $gfontStaticUri ?>" crossorigin>
-	<link rel="preload" href="<?= $mainFontUri ?>" as="font" type="font/woff2" crossorigin> -->
 
 	<title><?= $dgk->title ?></title>
 	<link rel="stylesheet" href="<?= $dgk->make_style_uri('index.css') ?>">
@@ -100,4 +140,4 @@ function injectFont($fontName, $fontWeight, $fontStyle, $fontFileName)
 		?>
 
 	</nav>
-	<main>
+	<main class="content">

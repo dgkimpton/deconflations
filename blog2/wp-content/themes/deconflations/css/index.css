@@ -1,3 +1,125 @@
+* {
+	margin: 0;
+	padding: 0;
+}
+
 html {
-  font-family: "Play", sans-serif;
+	font-family: "Play", sans-serif;
+	font-weight: var(--font-weight);
+}
+
+
+body {
+	display: grid;
+}
+
+a {
+	color: var(--l-f);
+	text-decoration: underline;
+	text-decoration-color: var(--l-u);
+}
+
+a:visited {
+	color: var(--l-fv);
+	text-decoration-color: var(--l-uv);
+}
+
+a:hover {
+	color: var(--l-fh);
+	background-color: var(--l-bh);
+}
+
+.offsite {
+	padding-right: 14px;
+}
+
+header {
+	margin-top: 0.5em;
+	margin-bottom: 2em;
+}
+
+.branding {
+	justify-self: center;
+}
+
+.branding h1 {
+	font-weight: bold;
+	font-size: 3em;
+}
+
+.branding h1 a {
+	text-decoration: none;
+	background-color: var(--body-b);
+	color: var(--logo-f);
+}
+
+.branding h1 a:visited {
+	color: var(--logo-f);
+	background-color: var(--body-b);
+}
+
+.branding h1 a:hover {
+	color: var(--logo-f);
+	background-color: var(--body-b);
+}
+
+.branding h2 {
+	font-weight: lighter;
+	font-size: 1em;
+	/* prevent auto-sizing on android */
+	height: 1em;
+	margin-left: 0.25em;
+}
+
+.tabs {
+	display: flex;
+	align-items: flex-start;
+	justify-self: center;
+	white-space: nowrap;
+	margin-bottom: 2em;
+}
+
+.tab-separator {
+	display: none;
+}
+
+.tab {
+	text-decoration: none;
+	color: var(--t-f);
+	background-color: var(--t-b);
+	padding-right: 1em;
+	padding-left: 1em;
+	padding-top: 0.1em;
+	margin-right: 2em;
+	border-bottom: 1px solid var(--t-u);
+}
+
+.tab:first-child {
+	margin-left: 0;
+}
+
+.tab:last-child {
+	margin-right: 0;
+}
+
+.current-tab {
+	border-bottom: 0.35em solid var(--t-u);
+	font-weight: bold;
+	color: var(--t-cf);
+	background-color: var(--t-cb);
+}
+
+.tab:visited {
+	color: var(--t-f);
+	background-color: var(--t-b);
+}
+
+.current-tab:visited {
+	color: var(--t-cf);
+	background-color: var(--t-cb);
+}
+
+.tab:hover {
+	color: var(--t-fh);
+	background-color: var(--t-bh);
 }
