@@ -1,4 +1,4 @@
-<?php global $more;
+<?php global $more, $dgk_in_recent_posts;
 
 $more = ($more == 1 || is_single());
 
@@ -14,9 +14,14 @@ if (is_single()) {
 	<?php
 }
 
-the_content(__('continue reading...')); ?>
+the_content(__('continue reading...'));
 
-	<a href="<?php echo get_permalink(get_the_ID()); ?>" class="permalink">permalink</a>
+if ($dgk_in_recent_posts) {
+	?>
+		<a href="<?php echo get_permalink(get_the_ID()); ?>" class="permalink">permalink</a>
+	<?php
+}
+	?>
 	<small class="posted">posted: <?php the_time('F Y'); ?></small>
 	<?php
 	if (!is_single()) { ?>
