@@ -71,30 +71,28 @@ function injectFont($fontName, $fontWeight, $fontStyle, $fontFileName)
 	$colors["l-fv"] = ["#faebd7", "#c46e00"];
 	$colors["l-uv"] = ["#faebd7", "#c46e00"];
 	#$colors[""] = ["", ""];
+
+	function generateColors($colors, $scheme)
+	{
+	?>
+		background-color: <?= $colors['body-b'][$scheme] ?>;color: <?= $colors['body-f'][$scheme] ?>;
+	<?php
+		foreach ($colors as  $key => $color) {
+			echo "--" . $key . ":" . $color[$scheme] . ";";
+		}
+	}
 	?>
 
 	<style>
 		@media (prefers-color-scheme: dark) {
 			:root {
-				background-color: #121212;
-				color: #BABABA;
-				<?php
-				foreach ($colors as  $key => $color) {
-					echo "--" . $key . ":" . $color[0] . ";";
-				}
-				?>
+				<?php generateColors($colors, 0) ?>
 			}
 		}
 
 		@media (prefers-color-scheme: light) {
 			:root {
-				background-color: #FEFEFE;
-				color: #3B3B3B;
-				<?php
-				foreach ($colors as  $key => $color) {
-					echo "--" . $key . ":" . $color[1] . ";";
-				}
-				?>
+				<?php generateColors($colors, 1) ?>
 			}
 		}
 
