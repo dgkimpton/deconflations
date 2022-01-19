@@ -123,3 +123,128 @@ header {
 	color: var(--t-fh);
 	background-color: var(--t-bh);
 }
+
+.post>summary small {
+	display: none;
+}
+
+.post>summary h2 {
+	display: inline;
+}
+
+main {
+	justify-self: center;
+	max-width: 40em;
+	width: 90%;
+	color: var(--body-f);
+}
+
+.page-title {
+	display: inline-block;
+	font-size: 1.25em;
+	padding-top: 0.1em;
+	border-bottom: 0.24em solid var(--t-u);
+	font-weight: bold;
+	width: auto;
+	text-align: center;
+	justify-self: center;
+	color: var(--t-f);
+	padding-right: 1em;
+	padding-left: 1em;
+	margin-bottom: 1.5em;
+}
+
+.posts {
+	margin-top: 1em;
+	margin-bottom: 1em;
+	border-radius: 1em;
+	padding: 7px;
+}
+
+main h2 {
+	margin-top: 1em;
+	margin-bottom: 0.5em;
+}
+
+.post-container {
+	list-style: none;
+}
+
+.post {
+	background: var(--body-b);
+	padding: 0.5em;
+	border-radius: 0.5em;
+	box-shadow: inset 0px 0px 3px 2px var(--post-border);
+	overflow: auto;
+}
+
+.post+.post {
+	margin-top: 10px;
+}
+
+.post>summary {
+	font-size: 1.5em;
+	cursor: pointer;
+	letter-spacing: 0.050em;
+}
+
+.post>summary:after {
+	display: block;
+	font-size: 0.6em;
+	margin-top: 2px;
+	margin-left: 1.5em;
+	letter-spacing: 0.10em;
+	color: var(--click-text);
+	content: 'click to expand';
+}
+
+.post[open]>summary:after {
+	display: none;
+}
+
+.post>summary {
+	list-style: none;
+}
+
+.post[open]>summary {
+	margin-bottom: 0.5em;
+}
+
+.posted {
+	font-weight: lighter;
+	font-size: 0.65em;
+}
+
+p {
+	font-family: "Segoe UI", "Liberation Sans", sans-serif;
+	margin-top: 0.5em;
+}
+
+footer {
+	margin-top: 2em;
+	margin-left: 1em;
+	margin-right: 1em;
+	padding-top: 3px;
+	justify-self: center;
+	width: 90%;
+	max-width: 40em;
+	text-align: center;
+	border-top: 1px solid var(--footer-f);
+}
+
+footer small {
+	font-size: 0.75em;
+	color: var(--footer-f);
+	padding-bottom: 2em;
+}
+
+.wp-block-post-featured-image {
+	display: none;
+}
+
+.not-found {
+	margin-top: 2em;
+	text-align: center;
+	margin-bottom: 2em;
+}
+

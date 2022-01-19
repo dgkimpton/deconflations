@@ -4,7 +4,7 @@ $more = ($more == 1 || is_single());
 
 if (is_single()) {
 ?>
-	<h2><?php the_title(); ?></h2>
+	<h2 class="page-title"><?php the_title(); ?></h2>
 <?php
 } else { ?>
 	<details <?= $more ? 'open' : '' ?> class="post">

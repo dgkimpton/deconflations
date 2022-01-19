@@ -53,9 +53,9 @@ function injectFont($fontName, $fontWeight, $fontStyle, $fontFileName)
 	*/
 
 	$colors = [];
-	$colors["body-b"] = ["#121212", "#FEFEFE"];
+	$colors["body-b"] = ["#121212", "#FDFDFD"];
 	$colors["body-f"] = ["#BABABA", "#3B3B3B"];
-	$colors["font-weight"] = ["lighter", "normal"];
+	$colors["font-weight"] = ["normal", "normal"];
 	$colors["logo-f"] = ["white", "black"];
 	$colors["t-b"] = ["var(--body-b)", "var(--body-b)"];
 	$colors["t-f"] = ["#CACACA", "#202020"];
@@ -70,6 +70,9 @@ function injectFont($fontName, $fontWeight, $fontStyle, $fontFileName)
 	$colors["l-bh"] = ["#f7c684", "#faebd7"];
 	$colors["l-fv"] = ["#faebd7", "#c46e00"];
 	$colors["l-uv"] = ["#faebd7", "#c46e00"];
+	$colors["footer-f"] = ["#707070", "#C0C0C0"];
+	$colors["post-border"] = ["#050505", "#F5F5F5"];
+	$colors["click-text"] = ["#505050", "#D0D0D0"];
 	#$colors[""] = ["", ""];
 
 	function generateColors($colors, $scheme)
@@ -113,6 +116,7 @@ function injectFont($fontName, $fontWeight, $fontStyle, $fontFileName)
 
 	<title><?= $dgk->title ?></title>
 	<link rel="stylesheet" href="<?= $dgk->make_style_uri('index.css') ?>">
+	<link rel="icon" href=" <?= $dgk->make_image_uri('favicon.ico'); ?>" type="image/x-icon">
 </head>
 
 <body>
