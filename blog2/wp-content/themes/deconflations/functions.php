@@ -13,3 +13,4 @@ add_action('init', function () {
 });
 
 add_filter('the_content', 'dgk_external_links', 1000);
+add_filter('syntax_highlighting_code_block_styling', '__return_false');

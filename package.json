@@ -5,6 +5,9 @@
   "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
+    "make-style": "stylus source/style/roots --out blog2/wp-content/themes/deconflations/css/ ",
+    "comment": "--compress",
+    "predeploy:local": "run-s make-style",
     "deploy:local": "node ./deploy.js localDeploy"
   },
   "repository": {
@@ -14,6 +17,8 @@
   "author": "Duncan Kimpton",
   "license": "ISC",
   "devDependencies": {
-    "ftp-deploy": "^2.3.8"
+    "ftp-deploy": "^2.3.8",
+    "npm-run-all": "^4.1.5",
+    "stylus": "^0.56.0"
   }
 }

@@ -5,28 +5,30 @@
 
 html {
 	font-family: "Play", sans-serif;
-	font-weight: var(--font-weight);
+	font-weight:$font-weight;
 }
 
 
 body {
 	display: grid;
+	background-color: $body-background;
+	color: $body-foreground;
 }
 
 a {
-	color: var(--l-f);
+	color: $link-foreground;
 	text-decoration: underline;
-	text-decoration-color: var(--l-u);
+	text-decoration-color: $link-underline;
 }
 
 a:visited {
-	color: var(--l-fv);
-	text-decoration-color: var(--l-uv);
+	color: $link-visited-foreground;
+	text-decoration-color: $link-visited-underline;
 }
 
 a:hover {
-	color: var(--l-fh);
-	background-color: var(--l-bh);
+	color: $link-hover-foreground;
+	background-color: $link-hover-background;
 }
 
 .offsite {
@@ -49,18 +51,18 @@ header {
 
 .branding h1 a {
 	text-decoration: none;
-	background-color: var(--body-b);
-	color: var(--logo-f);
+	background-color: $body-background;
+	color: $logo-foreground;
 }
 
 .branding h1 a:visited {
-	color: var(--logo-f);
-	background-color: var(--body-b);
+	color: $logo-foreground;
+	background-color: $body-background;
 }
 
 .branding h1 a:hover {
-	color: var(--logo-f);
-	background-color: var(--body-b);
+	color: $logo-foreground;
+	background-color: $body-background;
 }
 
 .branding h2 {
@@ -85,13 +87,13 @@ header {
 
 .tab {
 	text-decoration: none;
-	color: var(--t-f);
-	background-color: var(--t-b);
+	color: $tab-foreground;
+	background-color: $tab-background;
 	padding-right: 1em;
 	padding-left: 1em;
 	padding-top: 0.1em;
 	margin-right: 2em;
-	border-bottom: 1px solid var(--t-u);
+	border-bottom: 1px solid $tab-underline;
 }
 
 .tab:first-child {
@@ -103,25 +105,25 @@ header {
 }
 
 .current-tab {
-	border-bottom: 0.35em solid var(--t-u);
+	border-bottom: 0.35em solid $tab-underline;
 	font-weight: bold;
-	color: var(--t-cf);
-	background-color: var(--t-cb);
+	color: $tab-current-foreground;
+	background-color: $tab-current-background;
 }
 
 .tab:visited {
-	color: var(--t-f);
-	background-color: var(--t-b);
+	color: $tab-foreground;
+	background-color: $tab-background;
 }
 
 .current-tab:visited {
-	color: var(--t-cf);
-	background-color: var(--t-cb);
+	color: $tab-current-foreground;
+	background-color: $tab-current-background;
 }
 
 .tab:hover {
-	color: var(--t-fh);
-	background-color: var(--t-bh);
+	color: $tab-hover-foreground;
+	background-color: $tab-hover-background;
 }
 
 .post>summary small {
@@ -136,19 +138,19 @@ main {
 	justify-self: center;
 	max-width: 40em;
 	width: 90%;
-	color: var(--body-f);
+	color: $body-foreground;
 }
 
 .page-title {
 	display: inline-block;
 	font-size: 1.25em;
 	padding-top: 0.1em;
-	border-bottom: 0.24em solid var(--t-u);
+	border-bottom: 0.24em solid $tab-underline;
 	font-weight: bold;
 	width: auto;
 	text-align: center;
 	justify-self: center;
-	color: var(--t-f);
+	color: $tab-foreground;
 	padding-right: 1em;
 	padding-left: 1em;
 	margin-bottom: 1.5em;
@@ -171,10 +173,10 @@ main h2 {
 }
 
 .post {
-	background: var(--body-b);
+	background: $body-background;
 	padding: 0.5em;
 	border-radius: 0.5em;
-	box-shadow: inset 0px 0px 3px 2px var(--post-border);
+	box-shadow: inset 0px 0px 3px 2px $post-border;
 	overflow: auto;
 }
 
@@ -194,7 +196,7 @@ main h2 {
 	margin-top: 2px;
 	margin-left: 1.5em;
 	letter-spacing: 0.10em;
-	color: var(--click-text);
+	color: $click-text;
 	content: 'click to expand';
 }
 
@@ -211,6 +213,7 @@ main h2 {
 }
 
 .posted {
+	display:block;
 	font-weight: lighter;
 	font-size: 0.65em;
 }
@@ -229,12 +232,12 @@ footer {
 	width: 90%;
 	max-width: 40em;
 	text-align: center;
-	border-top: 1px solid var(--footer-f);
+	border-top: 1px solid $footer-foreground;
 }
 
 footer small {
 	font-size: 0.75em;
-	color: var(--footer-f);
+	color: $footer-foreground;
 	padding-bottom: 2em;
 }
 
@@ -247,4 +250,3 @@ footer small {
 	text-align: center;
 	margin-bottom: 2em;
 }
-

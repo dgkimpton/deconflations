@@ -2,7 +2,8 @@
 
 $dgk->preload->load_font($dgk->make_font_uri('play-v12-latin-regular.woff2'));
 $dgk->preload->load_font($dgk->make_font_uri('play-v12-latin-700.woff2'));
-$dgk->preload->load_style($dgk->make_style_uri('index.css'));
+$dgk->preload->load_style($dgk->make_style_uri('light.css'));
+$dgk->preload->load_style($dgk->make_style_uri('dark.css'));
 $dgk->preload->load_image($dgk->make_image_uri('offsite.png'));
 
 $dgk->preload->send_all();
@@ -35,72 +36,13 @@ function injectFont($fontName, $fontWeight, $fontStyle, $fontFileName)
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<!-- Want to see the source? https://github.com/dgkimpton/deconflations -->
 
-	<?php
-	# Get the darkmode set ASAP to minimise solid color flashes during page load 
-
-	/*
-	CSS Key
-
-	a ==> link
-	u ==> underline (text decoration)
-	h ==> hover
-	t ==> tab
-	f ==> foreground
-	b ==> background
-	c ==> current item
-	v ==> visited
-
-	*/
-
-	$colors = [];
-	$colors["body-b"] = ["#121212", "#FDFDFD"];
-	$colors["body-f"] = ["#BABABA", "#3B3B3B"];
-	$colors["font-weight"] = ["normal", "normal"];
-	$colors["logo-f"] = ["white", "black"];
-	$colors["t-b"] = ["var(--body-b)", "var(--body-b)"];
-	$colors["t-f"] = ["#CACACA", "#202020"];
-	$colors["t-u"] = ["#faebd7", "#ffd298"];
-	$colors["t-bh"] = ["#faebd7", "#ffd298"];
-	$colors["t-fh"] = ["black", "black"];
-	$colors["t-cb"] = ["var(--body-b)", "var(--body-b)"];
-	$colors["t-cf"] = ["white", "black"];
-	$colors["l-f"] = ["#f7c684", "#ff9000"];
-	$colors["l-u"] = ["#f7c684", "#ff9000"];
-	$colors["l-fh"] = ["black", "black"];
-	$colors["l-bh"] = ["#f7c684", "#faebd7"];
-	$colors["l-fv"] = ["#faebd7", "#c46e00"];
-	$colors["l-uv"] = ["#faebd7", "#c46e00"];
-	$colors["footer-f"] = ["#707070", "#C0C0C0"];
-	$colors["post-border"] = ["#050505", "#F5F5F5"];
-	$colors["click-text"] = ["#505050", "#D0D0D0"];
-	#$colors[""] = ["", ""];
-
-	function generateColors($colors, $scheme)
-	{
-	?>
-		background-color: <?= $colors['body-b'][$scheme] ?>;color: <?= $colors['body-f'][$scheme] ?>;
-	<?php
-		foreach ($colors as  $key => $color) {
-			echo "--" . $key . ":" . $color[$scheme] . ";";
-		}
-	}
-	?>
-
 	<style>
-		@media (prefers-color-scheme: dark) {
-			:root {
-				<?php generateColors($colors, 0) ?>
-			}
-		}
-
-		@media (prefers-color-scheme: light) {
-			:root {
-				<?php generateColors($colors, 1) ?>
-			}
-		}
+		@import "<?= $dgk->make_style_uri('light.css') ?>"
+		all and (prefers-color-scheme: light);
+		@import "<?= $dgk->make_style_uri('dark.css') ?>"
+		all and (prefers-color-scheme: dark);
 
 		<?php
-
 		# setup the bits that can't be done without php - this avoids us having to also
 		# use php to generate the css files
 
@@ -115,7 +57,6 @@ function injectFont($fontName, $fontWeight, $fontStyle, $fontFileName)
 	</style>
 
 	<title><?= $dgk->title ?></title>
-	<link rel="stylesheet" href="<?= $dgk->make_style_uri('index.css') ?>">
 	<link rel="icon" href=" <?= $dgk->make_image_uri('favicon.ico'); ?>" type="image/x-icon">
 </head>
 

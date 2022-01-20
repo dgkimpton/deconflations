@@ -1,0 +1,8 @@
+{
+  "files.associations": {
+    "*.styl": "stylus"
+  },
+  "[stylus]": {
+    "editor.formatOnSave": false
+  }
+}

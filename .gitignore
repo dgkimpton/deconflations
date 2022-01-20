@@ -4,3 +4,4 @@
 /lib/
 /coverage/
 .*.security.json
+/blog2/wp-content/themes/deconflations/css/
