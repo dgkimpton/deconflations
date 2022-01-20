@@ -9,5 +9,7 @@ if (!$dgk->isTabPage) {
 
 global $more;
 $more = 1;
-the_content();
+the_content(); ?>
+<small class="posted">posted: <?php the_time('F Y'); ?></small>
+<?php
 get_footer();
