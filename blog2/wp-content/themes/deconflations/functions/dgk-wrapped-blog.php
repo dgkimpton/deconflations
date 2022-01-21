@@ -6,7 +6,7 @@ require_once 'non-dynamic-object.php';
 require_once 'utils.php';
 require_once 'dgk-tab.php';
 
-final class DgkWrappedBlog extends NonDynamicObject
+final class WrappedBlog extends NonDynamicObject
 {
 	public $name;
 	public $language;
@@ -23,7 +23,7 @@ final class DgkWrappedBlog extends NonDynamicObject
 		$this->charset = get_bloginfo('charset');
 
 		$makeTab = function ($topLevelPage) use ($currentPageId) {
-			return new DgkTab(
+			return new Tab(
 				$topLevelPage->ID,
 				$topLevelPage->post_title,
 				make_page_permalink($topLevelPage),

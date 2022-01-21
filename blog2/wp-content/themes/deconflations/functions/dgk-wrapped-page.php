@@ -10,7 +10,7 @@ require_once 'utils.php';
 global $post;
 
 
-final class DgkWrappedPage extends NonDynamicObject
+final class WrappedPage extends NonDynamicObject
 {
 	public $blog;
 	public $preload;
@@ -26,8 +26,8 @@ final class DgkWrappedPage extends NonDynamicObject
 		global $post;
 
 		$this->pageId = get_the_ID();
-		$this->blog = new DgkWrappedBlog($this->pageId);
-		$this->preload = new DgkPreloader();
+		$this->blog = new WrappedBlog($this->pageId);
+		$this->preload = new Preloader();
 		$this->missing_posts = !have_posts();
 		$this->url = make_page_permalink($this->pageId);
 		$this->isTabPage = is_page() && !$post->post_parent;

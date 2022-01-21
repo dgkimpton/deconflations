@@ -6,7 +6,7 @@ require_once 'non-dynamic-object.php';
 
 global $post;
 
-final class DgkPreloader extends NonDynamicObject
+final class Preloader extends NonDynamicObject
 {
 	private $knownPreloads;
 	private $prePushed;

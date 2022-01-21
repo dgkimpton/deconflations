@@ -1,5 +1,8 @@
 <?php
-function dgk_external_links($content)
+
+namespace dgk;
+
+function external_links($content)
 {
 	$internal_sites = implode('|', array_map(function ($el) {
 		return str_replace('.', '\.', $el);

@@ -9,8 +9,8 @@ remove_filter('the_content', 'wpautop');
 remove_filter('the_excerpt', 'wpautop');
 
 add_action('init', function () {
-	add_shortcode('dgk_recent', 'dgk_recent_posts');
+	add_shortcode('dgk_recent', 'dgk\recent_posts');
 });
 
-add_filter('the_content', 'dgk_external_links', 1000);
+add_filter('the_content', 'dgk\external_links', 1000);
 add_filter('syntax_highlighting_code_block_styling', '__return_false');

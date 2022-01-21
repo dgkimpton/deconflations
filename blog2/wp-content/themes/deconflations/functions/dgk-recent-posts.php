@@ -1,5 +1,8 @@
 <?php
-function dgk_recent_posts($params)
+
+namespace dgk;
+
+function recent_posts($params)
 {
 	global $dgk_in_recent_posts, $more;
 
@@ -11,7 +14,7 @@ function dgk_recent_posts($params)
 		return "[[unknown category]]";
 	}
 
-	$postQuery = new WP_Query([
+	$postQuery = new \WP_Query([
 		'category_name' => $a['category']
 	]);
 

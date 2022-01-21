@@ -4,7 +4,7 @@ namespace dgk;
 
 require_once 'non-dynamic-object.php';
 
-final class DgkTab extends NonDynamicObject
+final class Tab extends NonDynamicObject
 {
 	public $displayText;
 	public $link;
