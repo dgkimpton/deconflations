@@ -34,6 +34,7 @@ function injectFont($fontName, $fontWeight, $fontStyle, $fontFileName)
 <head>
 	<meta charset="<?= $dgk->blog->charset ?>">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="Duncan Kimptons personal blog">
 	<!-- Want to see the source? https://github.com/dgkimpton/deconflations -->
 
 	<style>
