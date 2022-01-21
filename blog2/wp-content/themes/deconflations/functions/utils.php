@@ -28,3 +28,9 @@ function make_page_permalink($page)
 {
 	return make_relative(get_permalink($page));
 }
+
+function array_at($array, $index)
+{
+	$key = array_keys($array)[$index];
+	return $array[$key];
+}

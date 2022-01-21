@@ -1,5 +1,6 @@
 <?php
 
+require 'functions/dgk-gallery-listing.php';
 require 'functions/dgk-recent-posts.php';
 require 'functions/dgk-external-links.php';
 
@@ -10,6 +11,7 @@ remove_filter('the_excerpt', 'wpautop');
 
 add_action('init', function () {
 	add_shortcode('dgk_recent', 'dgk\recent_posts');
+	add_shortcode('dgk_gallery_listing', 'dgk\gallery_listing');
 });
 
 add_filter('the_content', 'dgk\external_links', 1000);
