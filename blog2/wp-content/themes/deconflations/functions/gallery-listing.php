@@ -10,14 +10,32 @@ final class Thumbnail extends NonDynamicObject
 	public $src;
 	public $width;
 	public $height;
+	public $alt;
 
-	function __construct($data)
+	private function __construct($src, $width, $height, $alt)
+	{
+		$this->src = $src;
+		$this->width = $width;
+		$this->height = $height;
+		$this->alt = $alt;
+	}
+
+	static function New($data)
 	{
 		$thumb = wp_get_attachment_image_src($data->ID, 'thumbnail');
 		$thumbRelative = make_relative($thumb[0]);
-		$this->src = $thumbRelative;
-		$this->width = $thumb[1];
-		$this->height = $thumb[2];
+		$src = $thumbRelative;
+		$width = $thumb[1];
+		$height = $thumb[2];
+
+		return new Thumbnail($src, $width, $height, "random image from the gallery");
+	}
+
+	static function Empty()
+	{
+		global $dgk;
+
+		return new Thumbnail($dgk->make_image_uri('missing-gallery.png'), 64, 64, "gallery has no images");
 	}
 }
 
@@ -31,6 +49,7 @@ final class Gallery extends NonDynamicObject
 	function __construct($data)
 	{
 		$this->title = $data->post_title;
+		$this->link = get_the_permalink($data->ID);
 
 		$attachements = get_children([
 			'post_parent' => $data->ID,
@@ -39,11 +58,14 @@ final class Gallery extends NonDynamicObject
 		]);
 
 		$this->size = $imageCount = count($attachements);
-		$thumbIdx = rand(0, $imageCount - 1);
-		$randomThumb = array_at($attachements, $thumbIdx);
+		if ($this->size > 0) {
+			$thumbIdx = rand(0, $imageCount - 1);
+			$randomThumb = array_at($attachements, $thumbIdx);
 
-		$this->thumb = new Thumbnail($randomThumb);
-		$this->link = get_the_permalink($data->ID);
+			$this->thumb = Thumbnail::New($randomThumb);
+		} else {
+			$this->thumb = Thumbnail::Empty();
+		}
 	}
 
 	public function isPlural()
@@ -81,11 +103,11 @@ function gallery_listing()
 			$imageText = $g->isPlural() ? 'images' : 'image';
 		?>
 			<li class="gallery">
-				<a href="<?= $g->link ?>" title="link to the <?= $g->title ?> image gallery">
-					<img src="<?= $g->thumb->src; ?>" width="<?= $g->thumb->width; ?>" height="<?= $g->thumb->height; ?>" alt="random image from the <?= $g->title ?> gallery">
+				<a href="<?= $g->link ?>" title="link to the image gallery called <?= $g->title ?>">
+					<img src="<?= $g->thumb->src; ?>" width="<?= $g->thumb->width; ?>" height="<?= $g->thumb->height; ?>" alt="<?= $g->thumb->alt ?>">
 					<span class="gallery-name"><?= $g->title ?></span>
+					<span class="gallery-size"> [ <?= $g->size ?> <?= $imageText ?>]</span>
 				</a>
-				<span class="gallery-size"> [ <?= $g->size ?> <?= $imageText ?>]</span>
 			</li>
 		<?php
 		}
