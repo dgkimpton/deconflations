@@ -4,7 +4,7 @@ namespace dgk;
 
 function recent_posts($params)
 {
-	global $dgk_in_recent_posts, $more;
+	global $more;
 
 	$a = shortcode_atts([
 		'category' => ''
@@ -22,7 +22,6 @@ function recent_posts($params)
 ?>
 	<ul class="posts">
 		<?php
-		$dgk_in_recent_posts = true;
 		$is_first_non_sticky = true;
 		while ($postQuery->have_posts()) {
 			$postQuery->the_post();
@@ -38,7 +37,6 @@ function recent_posts($params)
 				$is_first_non_sticky = false;
 			}
 		};
-		$dgk_in_recent_posts = false;
 		?>
 	</ul>
 <?php

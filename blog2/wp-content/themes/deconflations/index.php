@@ -1,10 +1,21 @@
 <?php
 require 'functions/common_data.php';
-get_header();
+
 
 if (is_page()) {
-	the_content();
+	if (!$dgk->isTabPage) {
+
+		get_template_part('single');
+	} else {
+
+		get_header();
+		the_content();
+		get_footer();
+	}
 } else if (have_posts()) {
+
+	get_header();
+
 	while (have_posts()) {
 		the_post();
 		global $more;
@@ -13,7 +24,11 @@ if (is_page()) {
 		get_template_part('post');
 		$more = $normal_more;
 	};
+
+	get_footer();
 } else {
+
+	get_header();
 	get_template_part('no_content');
+	get_footer();
 }
-get_footer();
