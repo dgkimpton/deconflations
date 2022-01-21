@@ -1,6 +1,6 @@
 <?php
 global $dgk;
 
-require_once 'dgk-wrapped-page.php';
+require_once 'wrapped-page.php';
 
 $dgk = new dgk\WrappedPage();

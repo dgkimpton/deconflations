@@ -1,9 +1,9 @@
 <?php
 
-require 'functions/dgk-gallery-listing.php';
-require 'functions/dgk-gallery.php';
-require 'functions/dgk-recent-posts.php';
-require 'functions/dgk-external-links.php';
+require 'functions/gallery-listing.php';
+require 'functions/gallery.php';
+require 'functions/recent-posts.php';
+require 'functions/external-links.php';
 
 remove_action('wp_head', 'rest_output_link_wp_head', 10);
 remove_action('template_redirect', 'rest_output_link_header', 11);

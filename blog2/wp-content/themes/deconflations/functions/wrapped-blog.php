@@ -4,7 +4,7 @@ namespace dgk;
 
 require_once 'non-dynamic-object.php';
 require_once 'utils.php';
-require_once 'dgk-tab.php';
+require_once 'tab.php';
 
 final class WrappedBlog extends NonDynamicObject
 {

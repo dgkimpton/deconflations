@@ -3,8 +3,8 @@
 namespace dgk;
 
 require_once 'non-dynamic-object.php';
-require_once 'dgk-wrapped-blog.php';
-require_once 'dgk-preloader.php';
+require_once 'wrapped-blog.php';
+require_once 'preloader.php';
 require_once 'utils.php';
 
 global $post;
