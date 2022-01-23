@@ -2,9 +2,11 @@
 
 namespace dgk;
 
+require 'common_data.php';
+
 function recent_posts($params)
 {
-	global $more;
+	global $dgk;
 
 	$a = shortcode_atts([
 		'category' => ''
@@ -19,28 +21,6 @@ function recent_posts($params)
 	]);
 
 	ob_start();
-?>
-	<ul class="posts">
-		<?php
-		$is_first_non_sticky = true;
-		while ($postQuery->have_posts()) {
-			$postQuery->the_post();
-
-			$normal_more = $more;
-			$more = (is_sticky() || $is_first_non_sticky) ? 1 : $normal_more;
-		?>
-			<li class="post-container"><?php get_template_part('post'); ?></li>
-		<?php
-			$more = $normal_more;
-
-			if (!is_sticky()) {
-				$is_first_non_sticky = false;
-			}
-		};
-		?>
-	</ul>
-<?php
-	wp_reset_postdata();
-
+	$dgk->list_posts($postQuery);
 	return ob_get_clean();
 }

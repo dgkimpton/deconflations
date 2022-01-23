@@ -15,16 +15,8 @@ if (is_page()) {
 } else if (have_posts()) {
 
 	get_header();
-
-	while (have_posts()) {
-		the_post();
-		global $more;
-		$normal_more = $more;
-		$more = is_sticky() ? 1 : $normal_more;
-		get_template_part('post');
-		$more = $normal_more;
-	};
-
+	global $wp_query;
+	$dgk->list_posts($wp_query);
 	get_footer();
 } else {
 

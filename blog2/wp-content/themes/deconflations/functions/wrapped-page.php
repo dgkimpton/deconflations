@@ -76,4 +76,35 @@ final class WrappedPage extends NonDynamicObject
 	{
 		return $this->make_uri('fonts', $name);
 	}
+
+	function list_posts($aQuery)
+	{
+		if (!$aQuery->have_posts()) {
+			return;
+		}
+?>
+		<ul class="posts">
+			<?php
+			$is_first_non_sticky = true;
+
+			while ($aQuery->have_posts()) {
+				$aQuery->the_post();
+
+				global $more;
+				$normal_more = $more;
+				$more = (is_sticky() || $is_first_non_sticky) ? 1 : $normal_more;
+			?>
+				<li class="post-container"><?php get_template_part('post'); ?></li>
+			<?php
+				$more = $normal_more;
+
+				if (!is_sticky()) {
+					$is_first_non_sticky = false;
+				}
+			};
+			wp_reset_postdata();
+			?>
+		</ul>
+<?php
+	}
 }
