@@ -82,7 +82,18 @@ final class WrappedPage extends NonDynamicObject
 		if (!$aQuery->have_posts()) {
 			return;
 		}
+
+		$hasPages = $aQuery->max_num_pages > 1;
+		$pageId = 	$hasPages ? $aQuery->query["paged"] : 1;
+
+		if ($hasPages && $pageId > 1) {
+			$preivousLink = esc_url(get_pagenum_link($pageId - 1));
 ?>
+			<a href="<?= $preivousLink ?>" class="previous-link">&lt;-- newer posts</a>
+		<?php
+		}
+
+		?>
 		<ul class="posts">
 			<?php
 			$is_first_non_sticky = true;
@@ -102,9 +113,16 @@ final class WrappedPage extends NonDynamicObject
 					$is_first_non_sticky = false;
 				}
 			};
-			wp_reset_postdata();
 			?>
 		</ul>
+
+		<?php
+		if ($hasPages && $pageId < $aQuery->max_num_pages) {
+			$nextLink = esc_url(get_pagenum_link($pageId + 1));
+		?>
+			<a href="<?= $nextLink ?>" class="next-link">older posts --&gt;</a>
 <?php
+		}
+		wp_reset_postdata();
 	}
 }

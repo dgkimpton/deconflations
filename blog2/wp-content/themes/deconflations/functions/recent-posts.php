@@ -17,10 +17,13 @@ function recent_posts($params)
 	}
 
 	$postQuery = new \WP_Query([
-		'category_name' => $a['category']
+		'category_name' => $a['category'],
+		'paged' => get_query_var('page', 1)
 	]);
 
 	ob_start();
+
 	$dgk->list_posts($postQuery);
+
 	return ob_get_clean();
 }
