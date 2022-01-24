@@ -126,11 +126,7 @@ header {
 	background-color: $tab-hover-background;
 }
 
-.post>summary small {
-	display: none;
-}
-
-.post>summary h2 {
+.post-title h2 {
 	display: inline;
 }
 
@@ -207,10 +203,26 @@ main h2 {
 	margin-top: 10px;
 }
 
-.post>summary {
+.post-title {
 	font-size: 1.5em;
-	cursor: pointer;
 	letter-spacing: 0.050em;
+}
+
+.permalink {
+	display: inline-block;
+	padding: 0.5em;
+}
+
+.search-result {
+	width: 100%;
+}
+
+.post>summary {
+	cursor: pointer;
+}
+
+.post>summary:hover {
+	color:$tab-current-foreground;
 }
 
 .post>summary:after {
@@ -229,6 +241,7 @@ main h2 {
 
 .post>summary {
 	list-style: none;
+	width: 100%;
 }
 
 .post[open]>summary {
@@ -313,4 +326,63 @@ img {
 
 .tag {
 	list-style: none;
+}
+
+.search {
+	margin: 1em;
+	margin-top: 2em;
+	margin-bottom: 3em;
+	font-size: 0.75em;
+	padding: 2px;
+}
+
+#searchform
+{
+	display: grid;
+	grid-template-columns: 1fr auto auto 25px 1fr;
+	line-height: 1.6em;
+}
+
+#s {
+	grid-column-start: 3;
+	grid-column-end : 5;
+	grid-row: 1;
+	padding-left: 3px;
+	line-height: 1.6em;
+	justify-self: stretch;
+	align-self : center;
+	color: $search-foreground;
+	background-color: $search-background;
+	border: 1px solid $footer-foreground;
+	border-radius: 5px;
+}
+
+#slp {
+	margin-right: 2em;
+}
+
+#sl {
+	margin-right: 1em;
+	grid-column-start: 2;
+	grid-column-end : 2;
+	align-self : center;
+	white-space: nowrap;
+}
+
+#searchsubmit {
+	border: 0px;
+	grid-row: 1;
+	grid-column-start: 4;
+	grid-column-end : 4;
+	line-height: 1.6em;
+	width: 25px;
+	height: 25px;
+	justify-self: right;
+	align-self : center;
+}
+
+.search-hint {
+	font-style: italic;
+	margin: 1em;
+	margin-left: 3em;
 }

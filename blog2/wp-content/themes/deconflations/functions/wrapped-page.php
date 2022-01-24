@@ -84,12 +84,14 @@ final class WrappedPage extends NonDynamicObject
 		}
 
 		$hasPages = $aQuery->max_num_pages > 1;
-		$pageId = 	$hasPages ? $aQuery->query["paged"] : 1;
+		$pageId = 	$hasPages && array_key_exists('paged', $aQuery->query) ? $aQuery->query['paged'] : 1;
+
+		$type = $aQuery->is_search() ? "results" : "posts";
 
 		if ($hasPages && $pageId > 1) {
 			$preivousLink = esc_url(get_pagenum_link($pageId - 1));
 ?>
-			<a href="<?= $preivousLink ?>" class="previous-link">&lt;-- newer posts</a>
+			<a href="<?= $preivousLink ?>" class="previous-link">&lt;-- newer <?= $type ?></a>
 		<?php
 		}
 
@@ -101,9 +103,14 @@ final class WrappedPage extends NonDynamicObject
 			while ($aQuery->have_posts()) {
 				$aQuery->the_post();
 
-				global $more;
+				global $more, $open;
 				$normal_more = $more;
-				$more = (is_sticky() || $is_first_non_sticky) ? 1 : $normal_more;
+				if ($aQuery->is_search()) {
+					$open = true;
+					$more = 0;
+				} else {
+					$more = $open = (is_sticky() || $is_first_non_sticky) ? 1 : $normal_more;
+				}
 			?>
 				<li class="post-container"><?php get_template_part('post'); ?></li>
 			<?php
@@ -120,7 +127,7 @@ final class WrappedPage extends NonDynamicObject
 		if ($hasPages && $pageId < $aQuery->max_num_pages) {
 			$nextLink = esc_url(get_pagenum_link($pageId + 1));
 		?>
-			<a href="<?= $nextLink ?>" class="next-link">older posts --&gt;</a>
+			<a href="<?= $nextLink ?>" class="next-link">older <?= $type ?> --&gt;</a>
 <?php
 		}
 		wp_reset_postdata();

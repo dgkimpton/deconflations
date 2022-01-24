@@ -23,7 +23,13 @@ function recent_posts($params)
 
 	ob_start();
 
-	$dgk->list_posts($postQuery);
+	if (!is_search()) {
+		$dgk->list_posts($postQuery);
+	} else {
+?>
+		<div class="search-hint">Posts in the category "<?= $a['category'] ?>"</div>
+<?php
+	}
 
 	return ob_get_clean();
 }

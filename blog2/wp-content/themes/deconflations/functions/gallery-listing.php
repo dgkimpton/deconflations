@@ -96,23 +96,30 @@ function gallery_listing()
 	global $dgk;
 
 	ob_start();
+	if (!is_search()) {
 ?>
-	<ul class="galleries">
-		<?php
-		foreach (findGalleries($dgk->pageId) as $g) {
-			$imageText = $g->isPlural() ? 'images' : 'image';
-		?>
-			<li class="gallery">
-				<a href="<?= $g->link ?>" title="link to the image gallery called <?= $g->title ?>">
-					<img src="<?= $g->thumb->src; ?>" width="<?= $g->thumb->width; ?>" height="<?= $g->thumb->height; ?>" alt="<?= $g->thumb->alt ?>">
-					<span class="gallery-name"><?= $g->title ?></span>
-					<span class="gallery-size"> [ <?= $g->size ?> <?= $imageText ?>]</span>
-				</a>
-			</li>
-		<?php
-		}
-		?>
-	</ul>
+		<ul class="galleries">
+			<?php
+			foreach (findGalleries($dgk->pageId) as $g) {
+				$imageText = $g->isPlural() ? 'images' : 'image';
+			?>
+				<li class="gallery">
+					<a href="<?= $g->link ?>" title="link to the image gallery called <?= $g->title ?>">
+						<img src="<?= $g->thumb->src; ?>" width="<?= $g->thumb->width; ?>" height="<?= $g->thumb->height; ?>" alt="<?= $g->thumb->alt ?>">
+						<span class="gallery-name"><?= $g->title ?></span>
+						<span class="gallery-size"> [ <?= $g->size ?> <?= $imageText ?>]</span>
+					</a>
+				</li>
+			<?php
+			}
+			?>
+		</ul>
+	<?php
+	} else {
+	?>
+		<div class="search-hint">image gallery listing</div>
 <?php
+	}
+
 	return ob_get_clean();
 }

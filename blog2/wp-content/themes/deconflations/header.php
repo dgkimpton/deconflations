@@ -55,6 +55,10 @@ function injectFont($fontName, $fontWeight, $fontStyle, $fontFileName)
 		?>.offsite {
 			background: url(<?= $dgk->make_image_uri('offsite.png') ?>) no-repeat right center;
 		}
+
+		.search-btn {
+			background: url(<?= $dgk->make_image_uri('search.png') ?>) no-repeat center center;
+		}
 	</style>
 
 	<title><?= $dgk->title ?></title>
