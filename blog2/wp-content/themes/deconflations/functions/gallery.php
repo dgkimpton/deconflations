@@ -64,40 +64,41 @@ function findGalleryItems($id)
 	);
 }
 
-function gallery()
+function image_gallery()
 {
 	global $dgk;
+
 	ob_start();
-
-	if (!is_search()) {
 ?>
-		<ul class="gallery-items">
-			<?php
-			foreach (findGalleryItems($dgk->pageId) as $i) {
-				$thumb = $i->thumb;
-				$full = $i->full;
-				$large = $i->large;
-			?>
-				<li class="gallery-item" data-id="<?= $i->id; ?>" data-img="<?= $large->src; ?>" data-width="<?= $large->width; ?>" data-height="<?= $large->height; ?>">
-					<a href="<?= $full->src; ?>">
-						<figure>
-							<img src="<?= $thumb->src; ?>" width="<?= $thumb->width; ?>" height="<?= $thumb->height; ?>" alt="link to full sized image" loading="lazy">
+	<ul class="gallery-items">
+		<?php
+		foreach (findGalleryItems($dgk->pageId) as $i) {
+			$thumb = $i->thumb;
+			$full = $i->full;
+			$large = $i->large;
+		?>
+			<li class="gallery-item" data-id="<?= $i->id; ?>" data-img="<?= $large->src; ?>" data-width="<?= $large->width; ?>" data-height="<?= $large->height; ?>">
+				<a href="<?= $full->src; ?>">
+					<figure>
+						<img src="<?= $thumb->src; ?>" width="<?= $thumb->width; ?>" height="<?= $thumb->height; ?>" alt="link to full sized image" loading="lazy">
 
-							<figcaption class="caption"><?= $i->caption; ?></figcaption>
-						</figure>
-					</a>
-					<blockquote class="description"><?= $i->description; ?></blockquote>
-				</li>
-			<?php
-			}
-			?>
+						<figcaption class="caption"><?= $i->caption; ?></figcaption>
+					</figure>
+				</a>
+				<blockquote class="description"><?= $i->description; ?></blockquote>
+			</li>
+		<?php
+		}
+		?>
 
-		</ul>
-	<?php
-	} else {
-	?>
-		<div class="search-hint">image gallery</div>
+	</ul>
 <?php
-	}
 	return ob_get_clean();
+}
+
+function gallery()
+{
+	return is_search()
+		? '<div class="search-hint">image gallery</div>'
+		: image_gallery();
 }

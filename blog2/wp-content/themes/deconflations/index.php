@@ -16,7 +16,7 @@ if (is_page()) {
 
 	get_header();
 	if (is_search()) {
-		echo "<h2>Search Results</h2>";
+		echo '<h2>Search Results</h2>';
 	}
 	global $wp_query;
 	$dgk->list_posts($wp_query);

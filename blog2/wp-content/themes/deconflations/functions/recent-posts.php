@@ -4,32 +4,33 @@ namespace dgk;
 
 require 'common_data.php';
 
-function recent_posts($params)
+function recent_post_listing($category)
 {
 	global $dgk;
 
-	$a = shortcode_atts([
-		'category' => ''
-	], $params);
+	ob_start();
+
+	$dgk->list_posts(
+		new \WP_Query([
+			'category_name' => $category,
+			'paged' => get_query_var('page', 1)
+		])
+	);
+
+	return ob_get_clean();
+}
+
+function recent_posts($params)
+{
+	$a = shortcode_atts(['category' => ''], $params);
 
 	if ($a['category'] == '') {
 		return "[[unknown category]]";
 	}
 
-	$postQuery = new \WP_Query([
-		'category_name' => $a['category'],
-		'paged' => get_query_var('page', 1)
-	]);
+	$category = $a['category'];
 
-	ob_start();
-
-	if (!is_search()) {
-		$dgk->list_posts($postQuery);
-	} else {
-?>
-		<div class="search-hint">Posts in the category "<?= $a['category'] ?>"</div>
-<?php
-	}
-
-	return ob_get_clean();
+	return is_search()
+		? '<div class="search-hint">posts in the category "' . $category . '"</div>'
+		: recent_post_listing($category);
 }
