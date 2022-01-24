@@ -246,8 +246,28 @@ p {
 	margin-top: 0.5em;
 }
 
+.tag-cloud {
+	justify-self: center;
+	width: 90%;
+	margin-top: 0.5em;
+	margin-bottom: 1em;
+	padding: 0.5em;
+
+	text-align: center;
+	font-size: 0.75em;
+	background: $body-background;
+	border-radius: 0.5em;
+	box-shadow: inset 0px 0px 3px 2px $post-border;
+}
+
+.cloud-head {
+	padding: 0;
+	margin: 0;
+}
+
 footer {
-	margin-top: 2em;
+	display: grid;
+	margin-top: 4em;
 	margin-left: 1em;
 	margin-right: 1em;
 	padding-top: 3px;
@@ -255,7 +275,6 @@ footer {
 	width: 90%;
 	max-width: 40em;
 	text-align: center;
-	border-top: 1px solid $footer-foreground;
 }
 
 footer small {
